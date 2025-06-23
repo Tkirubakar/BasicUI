@@ -1,0 +1,457 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: white;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Responsive Header */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #041D2E;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header.hide {
+  display: none;
+}
+
+.header h1 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin: 0;
+  font-weight: lighter;
+  font-size: 1.5rem;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.header-actions button,
+.load-more-wrapper button,
+.confirm-modal .confirm-actions button.danger {
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.deleteall {
+  background-color: #A80000;
+}
+
+.new-post,
+.confirm-modal .confirm-actions button.danger {
+  background-color: #B354B7;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  height: 60vh;
+  text-align: center;
+  font-size: 1rem;
+  gap: 0.5rem;
+}
+
+.empty-state .icon {
+  font-size: 3rem;
+  color: #666;
+}
+
+.note-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 4rem;
+}
+
+.note-card {
+  background-color: #222;
+  padding: 1rem 1.3rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.note-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #2A2A19;
+}
+
+.note-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #31311E;
+  line-height: 1.4em;
+}
+
+.note-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+}
+
+.load-more-wrapper {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  background-color: #52636D;
+  z-index: 9998;
+  display: none;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.modal-wrapper.show {
+  display: flex;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background: #000;
+  color: white;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 2rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.modal.show {
+  transform: translateX(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: #041D2E;
+  padding: 10px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+.modal-header .closeModal {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  margin: 0.4rem 0;
+  background: #000;
+  color: #BBBBBB;
+  border: 0;
+  padding: 6px 5px;
+  font-size: 0.9em;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+input#noteTitle,
+input#editTitle {
+  font-size: 1.5rem;
+  padding: 6px 5px;
+}
+
+.modal-content textarea {
+  height: 50%;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.8em;
+}
+
+.color-picker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.color-picker-row label {
+  white-space: nowrap;
+}
+
+.color-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#addNoteBtn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.color-picker-row button {
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  text-transform: uppercase;
+}
+
+.color-picker-row button.selected {
+  outline-color: #000;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+#addNoteBtn,
+#saveEditBtn {
+  padding: 0.6rem 2rem;
+  background-color: #B354B7;
+  border: none;
+  border-radius: 40px;
+  color: white;
+  cursor: pointer;
+  opacity: 1;
+  transition: background-color 0.2s, opacity 0.2s, cursor 0.2s;
+}
+
+#addNoteBtn:disabled {
+  background-color: #512653;
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.color-option {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  position: relative;
+  outline: none;
+  padding: 0;
+}
+
+.color-option.selected::after {
+  content: '✔';
+  font-size: 12px;
+  color: #000;
+  position: absolute;
+}
+
+.color-option.selected {
+  background-color: currentColor;
+}
+
+.confirm-modal {
+  position: fixed;
+  inset: 0;
+  background-color: #52636D;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-modal.hidden {
+  display: none;
+}
+
+.confirm-box {
+  background-color: #000;
+  padding: 1rem;
+  border-radius: 4px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.confirm-box p {
+  font-size: 1.1rem;
+  color: #eee;
+  margin-bottom: 1.5rem;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.confirm-actions button {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirm-actions .danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.confirm-actions .closeModal {
+  background-color: #444;
+  color: white;
+}
+
+#backBtn {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+#noteDetailPage .header-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#noteContent {
+  padding: 1rem;
+  color: white;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+.innerPageheading {
+  margin: 0;
+  font-size: 2em;
+}
+
+#noteContent img {
+  max-height: 450px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.note-content p {
+  line-height: 1.8em;
+}
+
+#modalEdit input,
+#modalEdit textarea{
+  margin-top: 0.75rem;
+}
+
+.confirm-modal .confirm-actions button.danger {
+  margin-bottom: 0.9em;
+}
+
+@media (max-width: 1024px) {
+  .note-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header{
+    padding: 1rem 1rem;
+  }
+
+  .header h1{
+    font-size: 1.4rem;
+  }
+  
+  .note-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+  }
+
+  .note-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .note-card-image {
+    height: 140px;
+  }
+
+  .modal {
+    max-width: 100%;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+
+  #noteContent {
+    max-width: 95%;
+  }
+}

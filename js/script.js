@@ -201,7 +201,7 @@ function renderColorOptions(container, current) {
     btn.classList.add('color-option');
     if (current === color) {
       btn.classList.add('selected');
-      btn.innerHTML = '&#10003;';
+      btn.innerHTML = `<img src="assets/images/check-icon.png" alt="Selected" style="width: 16px; height: 16px;" />`;
       selectedColor = color;
     }
     btn.addEventListener('click', () => {
